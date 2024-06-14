@@ -1,0 +1,61 @@
+# Test the SeleniumBase Python package with Azure Pipelines.
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- master
+
+jobs:
+
+- job: 'Test'
+  pool:
+    vmImage: 'Ubuntu-22.04'
+  strategy:
+    matrix:
+      Browser Chrome:
+        browser: 'chrome'
+      Browser Edge:
+        browser: 'edge'
+    maxParallel: 5
+
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.12'
+      architecture: 'x64'
+
+  - script: python -m pip install --upgrade pip && pip --version
+    displayName: 'Install/upgrade pip'
+
+  - script: python -m pip install seleniumbase
+    displayName: 'Install SeleniumBase'
+
+  # - script: |
+  #     sudo apt install google-chrome-stable
+  #   displayName: 'Install Chrome'
+
+  #- script: |
+  #    sudo apt-get install firefox
+  #  displayName: 'Install Firefox'
+
+  # - script: |
+  #     seleniumbase
+  #     sbase
+  #   displayName: 'Check the console scripts interface'
+
+  - script: |
+      seleniumbase install chromedriver
+    displayName: 'Install chromedriver'
+
+  - script: |
+      pip install allure-pytest
+    displayName: 'Install Allure Report'
+
+  - script: python -m pytest --browser=$(browser) --alluredir=allure_results
+    displayName: 'Run pytest --browser=$(browser) --alluredir=allure_results'
+
+  - task: PublishAllureReport@1
+    displayName: Publish Allure Report
+    inputs:
+      allureVersion: 2.29.0
+      testResultsDir: allure_results
+    condition: succeededOrFailed()
