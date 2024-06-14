@@ -1,0 +1,3 @@
+testCaseName,firstName,lastName,email,gender,mobilePhoneNumber,dayOfBirth,monthOfBirth,yearOfBirth,subjects,hobbies,fileName,currentAddress,state,city
+All Valid Fields 1,Quan,Do,quando@email.com,Male,0123456789,1,4,1994,"Economics, Social Studies","Sports, Reading, Music",cat_pic.jpg,239 Xuan Thuy,NCR,Delhi
+Only Mandatory Fields,Ben,Loha,,Other,0987654321,,,,,,,,,

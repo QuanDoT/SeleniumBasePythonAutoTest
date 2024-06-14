@@ -1,0 +1,3 @@
+testCaseName,firstName,lastName,email,gender,mobilePhoneNumber,dayOfBirth,monthOfBirth,yearOfBirth,subjects,hobbies,fileName,currentAddress,state,city
+Missing All Fields,,,,,,,,,,,,,,
+Missing Only Mandatory Fields,,,quando@email.com,,,1,4,1994,"Economics, Social Studies","Sports, Reading, Music",cat_pic.jpg,239 Xuan Thuy,NCR,Delhi

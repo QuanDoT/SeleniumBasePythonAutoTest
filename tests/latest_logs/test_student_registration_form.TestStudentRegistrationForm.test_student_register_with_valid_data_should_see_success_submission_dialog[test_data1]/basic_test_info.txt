@@ -1,0 +1,31 @@
+test_student_registration_form.py::TestStudentRegistrationForm::test_student_register_with_valid_data_should_see_success_submission_dialog[test_data1]
+--------------------------------------------------------------------
+Last Page: https://demoqa.com/automation-practice-form
+ Duration: 19.65s
+  Browser: Chrome 125.0.6422.142
+   Driver: chromedriver 125.0.6422.141
+Timestamp: 1718275413  (Unix Timestamp)
+     Date: Thursday, 13 June 2024
+     Time: 5:43:33 PM  (SE Asia Standard Time, UTC+07:00)
+--------------------------------------------------------------------
+Traceback:
+  File "C:\Users\quandot1\PycharmProjects\SeleniumBasePythonAutoTest\.venv\Lib\site-packages\_pytest\python.py", line 1627, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "C:\Users\quandot1\PycharmProjects\SeleniumBasePythonAutoTest\.venv\Lib\site-packages\pluggy\_hooks.py", line 513, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\quandot1\PycharmProjects\SeleniumBasePythonAutoTest\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\quandot1\PycharmProjects\SeleniumBasePythonAutoTest\.venv\Lib\site-packages\pluggy\_callers.py", line 139, in _multicall
+    raise exception.with_traceback(exception.__traceback__)
+  File "C:\Users\quandot1\PycharmProjects\SeleniumBasePythonAutoTest\.venv\Lib\site-packages\pluggy\_callers.py", line 103, in _multicall
+    res = hook_impl.function(*args)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\quandot1\PycharmProjects\SeleniumBasePythonAutoTest\.venv\Lib\site-packages\_pytest\python.py", line 162, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\quandot1\PycharmProjects\SeleniumBasePythonAutoTest\tests\test_student_registration_form.py", line 60, in test_student_register_with_valid_data_should_see_success_submission_dialog
+    f'{datetime.datetime(year, month, day).strftime('%d')} {get_month_name_full(month)},{year}',
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Exception: 'NoneType' object cannot be interpreted as an integer
