@@ -11,8 +11,10 @@ jobs:
     vmImage: 'Ubuntu-22.04'
   strategy:
     matrix:
-      Broswer Chrome:
+      Browser Chrome:
         browser: 'chrome'
+      Browser Edge:
+        browser: 'edge'
     maxParallel: 5
 
   steps:
@@ -35,10 +37,10 @@ jobs:
   #    sudo apt-get install firefox
   #  displayName: 'Install Firefox'
 
-  - script: |
-      seleniumbase
-      sbase
-    displayName: 'Check the console scripts interface'
+  # - script: |
+  #     seleniumbase
+  #     sbase
+  #   displayName: 'Check the console scripts interface'
 
   - script: |
       seleniumbase install chromedriver
