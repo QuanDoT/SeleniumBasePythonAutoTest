@@ -51,14 +51,9 @@ jobs:
   - script: python -m pytest --browser=chrome --alluredir=allure_results
     displayName: 'Run pytest --browser=chrome --alluredir=allure_results'
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: '**/test-results.xml'
-      testRunTitle: 'Python $(python.version)'
-    condition: succeededOrFailed()
-
   - task: PublishAllureReport@1
     displayName: Publish Report
     inputs:
       allureVersion: 2.29.0
       testResultsDir: allure_results
+    condition: succeededOrFailed()
