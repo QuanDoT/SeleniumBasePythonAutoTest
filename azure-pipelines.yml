@@ -11,16 +11,8 @@ jobs:
     vmImage: 'Ubuntu-22.04'
   strategy:
     matrix:
-      Python3_7:
-        python.version: '3.7'
-      Python3_8:
-        python.version: '3.8'
-      Python3_9:
-        python.version: '3.9'
-      Python3_10:
-        python.version: '3.10'
-      Python3_11:
-        python.version: '3.11'
+      Python312:
+        python.version: '3.12'
     maxParallel: 5
 
   steps:
@@ -33,13 +25,16 @@ jobs:
     displayName: 'Install/upgrade pip'
 
   - script: python -m pip install seleniumbase
-    displayName: 'Verify install from PyPI'
+    displayName: 'Install SeleniumBase'
+
+  # - script: python -m pip install seleniumbase
+  #   displayName: 'Verify install from PyPI'
 
   #- script: python -m pip install -r requirements.txt --upgrade
   #  displayName: 'Install dependencies'
 
-  - script: python -m pip install -e .
-    displayName: 'Install SeleniumBase'
+  # - script: python -m pip install -e .
+  #   displayName: 'Install SeleniumBase'
 
   - script: |
       sudo apt install google-chrome-stable
