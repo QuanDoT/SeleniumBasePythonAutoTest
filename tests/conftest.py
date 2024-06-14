@@ -1,3 +1,4 @@
+import time
 from uuid import uuid4
 
 import pytest
@@ -25,6 +26,9 @@ def valid_account():
 
 @pytest.fixture
 def profile_with_all_books(valid_account):
+    # Sleep to ease the load on the app
+    time.sleep(5)
+
     user_id, username, password = valid_account
 
     all_books_isbn = []

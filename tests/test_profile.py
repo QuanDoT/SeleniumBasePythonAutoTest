@@ -24,6 +24,22 @@ class TestProfile:
 
         sb.assert_text('Invalid username or password!', LoginPageLocators.INVALID_CREDENTIAL_TEXT)
 
+    def test_login_then_remove_all_existing_books_in_profile(self, profile_with_all_books, sb):
+        user_id, username, password = profile_with_all_books
+
+        login_page = LoginPage(sb)
+        (login_page
+         .go_to()
+         .do_login(username, password))
+
+        profile_page = ProfilePage(sb)
+        (profile_page
+         .click_delete_all_books()
+         .click_confirm_delete_all_books())
+
+        for title in BookTitlesEnum:
+            sb.assert_element_absent(ProfilePageLocators.BOOK_TITLE.format(title))
+
     @pytest.mark.parametrize('book_title',
                              [BookTitlesEnum.Git_Pocket_Guide.value,
                               BookTitlesEnum.Learning_JavaScript_Design_Patterns.value])
@@ -41,19 +57,3 @@ class TestProfile:
          .click_confirm_delete_book())
 
         sb.assert_element_absent(ProfilePageLocators.BOOK_TITLE.format(book_title))
-
-    def test_login_then_remove_existing_books_in_profile(self, profile_with_all_books, sb):
-        user_id, username, password = profile_with_all_books
-
-        login_page = LoginPage(sb)
-        (login_page
-         .go_to()
-         .do_login(username, password))
-
-        profile_page = ProfilePage(sb)
-        (profile_page
-         .click_delete_all_books()
-         .click_confirm_delete_all_books())
-
-        for title in BookTitlesEnum:
-            sb.assert_element_absent(ProfilePageLocators.BOOK_TITLE.format(title))

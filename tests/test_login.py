@@ -16,8 +16,6 @@ class TestLogin:
 
         sb.assert_text(username, AccountDetailLocators.USERNAME_VALUE_ELEMENT)
 
-        sb.tearDown()
-
     @pytest.mark.parametrize('username, password',
                              [('username1', 'password1'),
                               ('username 2', 'password 2'),
