@@ -11,14 +11,14 @@ jobs:
     vmImage: 'Ubuntu-22.04'
   strategy:
     matrix:
-      Python312:
-        python.version: '3.12'
+      Broswer Chrome:
+        browser: 'chrome'
     maxParallel: 5
 
   steps:
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '$(python.version)'
+      versionSpec: '3.12'
       architecture: 'x64'
 
   - script: python -m pip install --upgrade pip && pip --version
@@ -27,9 +27,9 @@ jobs:
   - script: python -m pip install seleniumbase
     displayName: 'Install SeleniumBase'
 
-  - script: |
-      sudo apt install google-chrome-stable
-    displayName: 'Install Chrome'
+  # - script: |
+  #     sudo apt install google-chrome-stable
+  #   displayName: 'Install Chrome'
 
   #- script: |
   #    sudo apt-get install firefox
@@ -48,11 +48,11 @@ jobs:
       pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: python -m pytest --browser=chrome --alluredir=allure_results
-    displayName: 'Run pytest --browser=chrome --alluredir=allure_results'
+  - script: python -m pytest --browser=$(browser) --alluredir=allure_results
+    displayName: 'Run pytest --browser=$(browser) --alluredir=allure_results'
 
   - task: PublishAllureReport@1
-    displayName: Publish Report
+    displayName: Publish Allure Report
     inputs:
       allureVersion: 2.29.0
       testResultsDir: allure_results
