@@ -29,28 +29,11 @@ jobs:
   - script: python -m pip install seleniumbase
     displayName: 'Install SeleniumBase'
 
-  # - script: |
-  #     sudo apt install google-chrome-stable
-  #   displayName: 'Install Chrome'
-
-  #- script: |
-  #    sudo apt-get install firefox
-  #  displayName: 'Install Firefox'
-
-  # - script: |
-  #     seleniumbase
-  #     sbase
-  #   displayName: 'Check the console scripts interface'
-
-  # - script: |
-  #     seleniumbase install chromedriver
-  #   displayName: 'Install chromedriver'
-
   - script: |
       pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --highlights=3
+  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --highlights=20
     displayName: 'Run pytest using browser: $(browser)'
 
   - task: PublishAllureReport@1
