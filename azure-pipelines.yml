@@ -42,9 +42,9 @@ jobs:
   #     sbase
   #   displayName: 'Check the console scripts interface'
 
-  - script: |
-      seleniumbase install chromedriver
-    displayName: 'Install chromedriver'
+  # - script: |
+  #     seleniumbase install chromedriver
+  #   displayName: 'Install chromedriver'
 
   - script: |
       pip install allure-pytest
