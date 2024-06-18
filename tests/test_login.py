@@ -16,6 +16,16 @@ class TestLogin:
 
         sb.assert_text(username, AccountDetailLocators.USERNAME_VALUE_ELEMENT)
 
+    def test_login_deliberate_fail(self, valid_account, sb):
+        user_id, username, password = valid_account
+
+        login_page = LoginPage(sb)
+        (login_page
+         .go_to()
+         .do_login(username, password))
+
+        sb.assert_text("WRONG_TEXT", AccountDetailLocators.USERNAME_VALUE_ELEMENT)
+
     @pytest.mark.parametrize('username, password',
                              [('username1', 'password1'),
                               ('username 2', 'password 2'),
