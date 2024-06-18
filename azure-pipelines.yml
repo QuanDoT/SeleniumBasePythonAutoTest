@@ -50,12 +50,13 @@ jobs:
       pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --pls=eager
+  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --highlights=3
     displayName: 'Run pytest using browser: $(browser)'
 
   - task: PublishAllureReport@1
     displayName: Publish Allure Report
     inputs:
+      reportName: 'Allure Report: $(browser)'
       allureVersion: 2.29.0
       testResultsDir: allure_results
     condition: succeededOrFailed()
