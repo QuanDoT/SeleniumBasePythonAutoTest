@@ -15,31 +15,31 @@ class StudentRegistrationFormPage:
     def __init__(self, sb):
         self.__sb = sb
 
-    @allure.title('Go to Student Registration Form page')
+    @allure.step('Go to Student Registration Form page')
     def go_to(self):
         self.__sb.open('https://demoqa.com/automation-practice-form')
 
         return self
 
-    @allure.title('Fill First Name')
+    @allure.step('Fill First Name')
     def fill_first_name(self, value: str):
         self.__sb.type(StudentRegistrationFormPageLocators.FIRST_NAME_INPUT, value)
 
         return self
 
-    @allure.title('Fill Last Name')
+    @allure.step('Fill Last Name')
     def fill_last_name(self, value: str):
         self.__sb.type(StudentRegistrationFormPageLocators.LAST_NAME_INPUT, value)
 
         return self
 
-    @allure.title('Fill Email')
+    @allure.step('Fill Email')
     def fill_email(self, value: str):
         self.__sb.type(StudentRegistrationFormPageLocators.EMAIL_INPUT, value)
 
         return self
 
-    @allure.title('Choose Gender')
+    @allure.step('Choose Gender')
     def choose_gender(self, value: str):
         if value == GendersEnum.MALE.value:
             self.__sb.click(StudentRegistrationFormPageLocators.MALE_RADIO_BUTTON)
@@ -50,13 +50,13 @@ class StudentRegistrationFormPage:
 
         return self
 
-    @allure.title('Fill Mobile Phone number')
+    @allure.step('Fill Mobile Phone number')
     def fill_mobile_phone_number(self, value: str):
         self.__sb.type(StudentRegistrationFormPageLocators.MOBILE_NUMBER_INPUT, value)
 
         return self
 
-    @allure.title('Choose Date of Birth by clicking')
+    @allure.step('Choose Date of Birth by clicking')
     def choose_date_of_birth(self, day: int, month: int, year: int):
         self.__sb.click(StudentRegistrationFormPageLocators.DATE_OF_BIRTH_INPUT)
 
@@ -77,7 +77,7 @@ class StudentRegistrationFormPage:
 
         return self
 
-    @allure.title('Choose Subjects')
+    @allure.step('Choose Subjects')
     def input_subjects(self, *args: str):
         for subject in args:
             self.__sb.send_keys(StudentRegistrationFormPageLocators.SUBJECTS_INPUT, subject)
@@ -85,7 +85,7 @@ class StudentRegistrationFormPage:
 
         return self
 
-    @allure.title('Choose Hobbies')
+    @allure.step('Choose Hobbies')
     def choose_hobbies(self, *args: str):
         for hobby in args:
             if hobby == HobbiesEnum.SPORTS.value:
@@ -97,7 +97,7 @@ class StudentRegistrationFormPage:
 
         return self
 
-    @allure.title('Upload file')
+    @allure.step('Upload file')
     def upload_picture_from_files(self, file_path: str):
         if file_path and not file_path.isspace():
             self.__sb.choose_file(StudentRegistrationFormPageLocators.FILE_UPLOAD_BUTTON,
@@ -105,13 +105,13 @@ class StudentRegistrationFormPage:
 
         return self
 
-    @allure.title('Fill Current Address')
+    @allure.step('Fill Current Address')
     def input_current_address(self, value: str):
         self.__sb.type(StudentRegistrationFormPageLocators.CURRENT_ADDRESS_INPUT, value)
 
         return self
 
-    @allure.title('Choose State')
+    @allure.step('Choose State')
     def choose_state(self, state: str):
         if state and not state.isspace():
             self.__sb.click(StudentRegistrationFormPageLocators.STATE_SELECT)
@@ -119,7 +119,7 @@ class StudentRegistrationFormPage:
 
         return self
 
-    @allure.title('Choose City')
+    @allure.step('Choose City')
     def choose_city(self, city: str):
         if city and not city.isspace():
             self.__sb.click(StudentRegistrationFormPageLocators.CITY_SELECT)
@@ -127,7 +127,7 @@ class StudentRegistrationFormPage:
 
         return self
 
-    @allure.title('Click Submit form')
+    @allure.step('Click Submit form')
     def click_submit(self):
         self.__sb.click(StudentRegistrationFormPageLocators.SUBMIT_BUTTON)
 

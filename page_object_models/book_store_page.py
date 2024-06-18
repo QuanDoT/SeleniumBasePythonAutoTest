@@ -11,20 +11,20 @@ class BookStorePage:
     def __init__(self, sb):
         self.__sb = sb
 
-    @allure.title('Go to BookStore page')
+    @allure.step('Go to BookStore page')
     def go_to(self):
         self.__sb.open("https://demoqa.com/books")
 
         return self
 
-    @allure.title('Search for book')
+    @allure.step('Search for book')
     def search_for_book(self, text):
         self.__sb.type(SearchBoxLocators.SEARCH_BOX, text)
         self.__sb.click(SearchBoxLocators.SEARCH_BUTTON)
 
         return self
 
-    @allure.title('Click Log Out')
+    @allure.step('Click Log Out')
     def click_log_out(self):
         self.__sb.click(AccountDetailLocators.LOG_OUT_BUTTON)
 

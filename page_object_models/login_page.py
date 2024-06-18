@@ -7,25 +7,25 @@ class LoginPage:
     def __init__(self, sb):
         self.__sb = sb
 
-    @allure.title('Go to Login page')
+    @allure.step('Go to Login page')
     def go_to(self):
         self.__sb.open("https://demoqa.com/login")
 
         return self
 
-    @allure.title('Type username')
+    @allure.step('Type username')
     def input_username(self, username):
         self.__sb.type(LoginPageLocators.USERNAME_INPUT, username)
 
         return self
 
-    @allure.title('Type password')
+    @allure.step('Type password')
     def input_password(self, password):
         self.__sb.type(LoginPageLocators.PASSWORD_INPUT, password)
 
         return self
 
-    @allure.title('Click Login')
+    @allure.step('Click Login')
     def click_login(self):
         self.__sb.click(LoginPageLocators.LOGIN_BUTTON)
 
