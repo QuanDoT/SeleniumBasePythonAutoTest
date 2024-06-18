@@ -5,8 +5,8 @@ import pytest
 
 from definitions import ROOT_DIR
 from helpers.datetime_helper import get_month_name_full
-from helpers.table_helper import TableHelper
 from helpers.test_data_helper import read_test_data_from_csv
+from page_object_models.common_components.html_table import HtmlTable
 from page_object_models.locators.student_registration_form_page_locators import StudentRegistrationFormPageLocators
 from page_object_models.student_registration_form_page import StudentRegistrationFormPage
 
@@ -36,7 +36,7 @@ class TestStudentRegistrationForm:
 
         sb.assert_element(StudentRegistrationFormPageLocators.THANK_YOU_FOR_SUBMITTING_DIALOG)
 
-        actual_result = TableHelper(sb).get_table_body_texts_as_dict()
+        actual_result = HtmlTable(sb).wait_for_table_exist().get_table_body_texts_as_dict()
 
         expected_result = create_expected_form_result(data)
 
@@ -145,4 +145,3 @@ def map_test_data(test_data):
         state=test_data['state'],
         city=test_data['city']
     )
-

@@ -1,7 +1,8 @@
+import allure
 from selenium.webdriver.common.by import By
 
-from helpers.table_helper import TableHelper
-from helpers.common_actions import CommonActions
+from page_object_models.common_components.confirmation_dialog import ConfirmationDialog
+from page_object_models.common_components.react_table import ReactTable
 from page_object_models.locators.common_components.account_detail_locators import AccountDetailLocators
 from page_object_models.locators.common_components.search_box_locators import SearchBoxLocators
 from page_object_models.locators.profile_page_locators import ProfilePageLocators
@@ -11,11 +12,13 @@ class ProfilePage:
     def __init__(self, sb):
         self.__sb = sb
 
+    @allure.title('Go to Profile page')
     def go_to(self):
         self.__sb.open("https://demoqa.com/profile")
 
         return self
 
+    @allure.title('Search for book using book name')
     def search_for_book(self, book_name):
         self.__sb.type(SearchBoxLocators.SEARCH_BOX, book_name)
         self.__sb.click(SearchBoxLocators.SEARCH_BUTTON)
@@ -25,45 +28,53 @@ class ProfilePage:
     def get_books_by_title(self, title):
         return self.__sb.driver.find_elements(by=By.XPATH, value=ProfilePageLocators.BOOK_TITLE.format(title))
 
+    @allure.title('Click Log Out')
     def click_log_out(self):
         self.__sb.click(AccountDetailLocators.LOG_OUT_BUTTON)
 
         return self
 
+    @allure.title('Click Go to Book Store')
     def click_go_to_book_store(self):
         self.__sb.click(ProfilePageLocators.GO_TO_BOOK_STORE_BUTTON)
 
         return self
 
+    @allure.title('Click Delete Account')
     def click_delete_account(self):
         self.__sb.click(ProfilePageLocators.DELETE_ACCOUNT_BUTTON)
 
         return self
 
+    @allure.title('Click Confirm when deleting account')
     def click_confirm_delete_account(self):
-        CommonActions(self.__sb).click_confirm_dialog()
+        ConfirmationDialog(self.__sb).click_confirm()
 
         return self
 
+    @allure.title('Delete a single book by clicking the trash icon')
     def click_delete_single_book(self, book_title: str):
-        table_helper = TableHelper(self.__sb).wait_for_react_table_exist()
-        row_index = table_helper.get_row_index(book_title, 'Title')
+        react_table = ReactTable(self.__sb).wait_for_react_table_exist()
+        row_index = react_table.get_row_index(book_title, 'Title')
 
         self.__sb.click(ProfilePageLocators.DELETE_BOOK_BUTTON.format(row_index))
 
         return self
 
+    @allure.title('Click Confirm when deleting a book in Profile')
     def click_confirm_delete_book(self):
-        CommonActions(self.__sb).click_confirm_dialog()
+        ConfirmationDialog(self.__sb).click_confirm()
 
         return self
 
+    @allure.title('Click Delete All Books')
     def click_delete_all_books(self):
         self.__sb.click(ProfilePageLocators.DELETE_ALL_BOOKS_BUTTON)
 
         return self
 
+    @allure.title('Click Confirm when deleting all books in Profile')
     def click_confirm_delete_all_books(self):
-        CommonActions(self.__sb).click_confirm_dialog()
+        ConfirmationDialog(self.__sb).click_confirm()
 
         return self
