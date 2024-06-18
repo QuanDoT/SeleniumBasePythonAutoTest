@@ -54,7 +54,7 @@ jobs:
     displayName: 'Run pytest using browser: $(browser)'
 
   - task: PublishAllureReport@1
-    displayName: Publish Allure Report
+    displayName: 'Publish Allure Report: $(browser)'
     inputs:
       reportName: 'Allure Report: $(browser)'
       allureVersion: 2.29.0
