@@ -13,8 +13,8 @@ jobs:
     matrix:
       Browser Chrome:
         browser: 'chrome'
-      # Browser Edge:
-      #   browser: 'edge'
+      Browser Edge:
+        browser: 'edge'
     maxParallel: 5
 
   steps:
@@ -26,14 +26,13 @@ jobs:
   - script: python -m pip install --upgrade pip && pip --version
     displayName: 'Install/upgrade pip'
 
-  - script: python -m pip install seleniumbase
+  - script: pip install seleniumbase
     displayName: 'Install SeleniumBase'
 
-  - script: |
-      pip install allure-pytest
+  - script: pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: python -m pytest --browser=$(browser) --headed --alluredir=allure_results --ad-block --demo --demo-sleep=0
+  - script: pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run pytest using browser: $(browser)'
 
   - task: PublishAllureReport@1
