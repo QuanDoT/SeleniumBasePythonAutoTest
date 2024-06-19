@@ -32,7 +32,7 @@ jobs:
   - script: pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: pytest --browser=$(browser) --headed --alluredir=allure_results --ad-block --demo --demo-sleep=0
+  - script: pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run pytest using browser: $(browser)'
 
   - task: PublishAllureReport@1
