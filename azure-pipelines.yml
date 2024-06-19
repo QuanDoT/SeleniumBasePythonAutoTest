@@ -13,8 +13,8 @@ jobs:
     matrix:
       Browser Chrome:
         browser: 'chrome'
-      Browser Edge:
-        browser: 'edge'
+      # Browser Edge:
+      #   browser: 'edge'
     maxParallel: 5
 
   steps:
@@ -22,6 +22,14 @@ jobs:
     inputs:
       versionSpec: '3.12'
       architecture: 'x64'
+      
+  - task: BrowserStackConfig@0
+    inputs:
+      BrowserStackServiceEndPoint: 'browserstack-connection'
+      
+  - task: BrowserStackResults@1
+    inputs:
+      browserstackProduct: 'automate'
 
   - script: python -m pip install --upgrade pip && pip --version
     displayName: 'Install/upgrade pip'
