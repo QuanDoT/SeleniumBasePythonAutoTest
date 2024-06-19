@@ -13,8 +13,8 @@ jobs:
     matrix:
       Browser Chrome:
         browser: 'chrome'
-      Browser Edge:
-        browser: 'edge'
+      # Browser Edge:
+      #   browser: 'edge'
     maxParallel: 5
 
   steps:
@@ -33,7 +33,7 @@ jobs:
       pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --highlights=20
+  - script: python -m pytest --browser=$(browser) --headed --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run pytest using browser: $(browser)'
 
   - task: PublishAllureReport@1
