@@ -27,9 +27,6 @@ def valid_account():
 
     account_api_helper.delete_user(user_id, username, password)
 
-    # Need to sleep here because the server seems unable to process consecutive account-related requests
-    time.sleep(15)
-
 
 @pytest.fixture
 @allure.title("Authenticated user account, with all books added to its profile")

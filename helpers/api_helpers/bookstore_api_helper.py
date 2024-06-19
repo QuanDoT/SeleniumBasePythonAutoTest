@@ -1,17 +1,16 @@
-import json
 from typing import List
 
-import requests
 from requests.auth import HTTPBasicAuth
 
 from constants.endpoints import Endpoints
 from decorators.requests_decorators import print_response_detail, expect_status_code
+from helpers.api_helpers.request_helper import get_session
 
 
 @expect_status_code(200)
 @print_response_detail
 def get_books():
-    return requests.get(Endpoints.BookStore.GET_BOOKS)
+    return get_session().get(Endpoints.BookStore.GET_BOOKS)
 
 
 @expect_status_code(201)
@@ -29,7 +28,7 @@ def add_books_to_user(userid: str, list_isbn: List, username: str, password: str
         'collectionOfIsbns': collection_of_isbns
     }
 
-    return requests.post(Endpoints.BookStore.POST_BOOKS, json=data, auth=HTTPBasicAuth(username, password))
+    return get_session().post(Endpoints.BookStore.POST_BOOKS, json=data, auth=HTTPBasicAuth(username, password))
 
 
 @expect_status_code(200, 204)
@@ -37,7 +36,7 @@ def add_books_to_user(userid: str, list_isbn: List, username: str, password: str
 def delete_books_from_user(userid: str, username: str, password: str):
     payload = {'UserId': userid}
 
-    return requests.delete(Endpoints.BookStore.DELETE_BOOKS, params=payload, auth=HTTPBasicAuth(username, password))
+    return get_session().delete(Endpoints.BookStore.DELETE_BOOKS, params=payload, auth=HTTPBasicAuth(username, password))
 
 
 @expect_status_code(200)
@@ -45,7 +44,7 @@ def delete_books_from_user(userid: str, username: str, password: str):
 def get_book(isbn: str):
     payload = {'ISBN': isbn}
 
-    return requests.get(Endpoints.BookStore.GET_BOOKS, params=payload)
+    return get_session().get(Endpoints.BookStore.GET_BOOKS, params=payload)
 
 
 @expect_status_code(204)
@@ -56,7 +55,7 @@ def delete_book_from_user(userid: str, isbn: str, username: str, password: str):
         'userId': isbn
     }
 
-    return requests.delete(Endpoints.BookStore.DELETE_BOOK, json=data, auth=HTTPBasicAuth(username, password))
+    return get_session().delete(Endpoints.BookStore.DELETE_BOOK, json=data, auth=HTTPBasicAuth(username, password))
 
 
 @expect_status_code(200)
@@ -67,4 +66,4 @@ def add_book_to_user(userid: str, isbn: str, username: str, password: str):
         'isbn': isbn
     }
 
-    return requests.put(Endpoints.BookStore.PUT_BOOK.format(isbn), json=data, auth=HTTPBasicAuth(username, password))
+    return get_session().put(Endpoints.BookStore.PUT_BOOK.format(isbn), json=data, auth=HTTPBasicAuth(username, password))
