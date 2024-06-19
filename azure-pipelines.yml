@@ -22,14 +22,6 @@ jobs:
     inputs:
       versionSpec: '3.12'
       architecture: 'x64'
-      
-  - task: BrowserStackConfig@0
-    inputs:
-      BrowserStackServiceEndPoint: 'browserstack-connection'
-      
-  # - task: BrowserStackResults@1
-  #   inputs:
-  #     browserstackProduct: 'automate'
 
   - script: python -m pip install --upgrade pip && pip --version
     displayName: 'Install/upgrade pip'
@@ -41,12 +33,8 @@ jobs:
       pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --highlights=20 --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80
+  - script: python -m pytest --browser=$(browser) --headed --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run pytest using browser: $(browser)'
-
-  - task: BrowserStackResults@1
-    inputs:
-      browserstackProduct: 'automate'
 
   - task: PublishAllureReport@1
     displayName: 'Publish Allure Report: $(browser)'
