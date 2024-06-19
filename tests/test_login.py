@@ -16,7 +16,7 @@ class TestLogin:
 
         sb.assert_text(username, AccountDetailLocators.USERNAME_VALUE_ELEMENT)
 
-    @pytest.skip('To be unskipped when demoing report screen capture on failure function')
+    @pytest.mark.skip('To be unskipped when demoing report screen capture on failure function')
     def test_login_deliberate_fail(self, valid_account, sb):
         user_id, username, password = valid_account
 
