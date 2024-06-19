@@ -41,7 +41,7 @@ jobs:
       pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --highlights=20 --browser=remote --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80
+  - script: python -m pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0 --highlights=20 --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80
     displayName: 'Run pytest using browser: $(browser)'
 
   - task: BrowserStackResults@1
