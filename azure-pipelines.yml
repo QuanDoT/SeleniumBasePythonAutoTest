@@ -13,8 +13,8 @@ jobs:
     matrix:
       Browser Chrome:
         browser: 'chrome'
-      # Browser Edge:
-      #   browser: 'edge'
+      Browser Edge:
+        browser: 'edge'
     maxParallel: 5
 
   steps:
