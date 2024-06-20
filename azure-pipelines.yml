@@ -14,7 +14,7 @@ jobs:
       Capability Windows 11 - Edge:
         platform: 'windows'
         browser: 'edge'
-      Capability Windows  - Chrome:
+      Capability Windows 8 - Chrome:
         platform: 'win8'
         browser: 'chrome'
       Capability Mac - Safari:
@@ -27,10 +27,10 @@ jobs:
     inputs:
       versionSpec: '3.12'
       architecture: 'x64'
-
-  - task: BrowserStackConfig@0
-    inputs:
-      BrowserStackServiceEndPoint: 'browserstack-connection'
+#
+#  - task: BrowserStackConfig@0
+#    inputs:
+#      BrowserStackServiceEndPoint: 'browserstack-connection'
 
   - script: python -m pip install --upgrade pip && pip --version
     displayName: 'Install/upgrade pip'
@@ -43,11 +43,11 @@ jobs:
 
   - script: pytest --browser=remote --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80 --cap_file=capabilities/$(platform)_$(browser).yml --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run test on platform: $(platform) and browser: $(browser)'
-
-  - task: BrowserStackResults@1
-    displayName: 'Automate BrowserStack result'
-    inputs:
-      browserstackProduct: 'automate'
+#
+#  - task: BrowserStackResults@1
+#    displayName: 'Automate BrowserStack result'
+#    inputs:
+#      browserstackProduct: 'automate'
 
   - task: PublishAllureReport@1
     displayName: 'Publish Allure Report: $(platform) $(browser)'
