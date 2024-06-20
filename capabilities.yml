@@ -1,0 +1,7 @@
+platformName: mac
+browserName: chrome
+browserVersion: 124.0
+buildIdentifier: ${BUILD_NUMBER}
+projectName: Testing on Mac
+debug: true
+networkLogs: true
