@@ -1,7 +1,7 @@
-platformName: WIN10
-browserName: edge
+platformName: WIN8
+browserName: chrome
 browserVersion: latest
 buildIdentifier: ${BUILD_NUMBER}
-projectName: Testing using Mac - Safari
+projectName: Testing using Windows 8 - Chrome
 debug: true
 networkLogs: true
