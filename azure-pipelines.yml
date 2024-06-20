@@ -11,12 +11,12 @@ jobs:
     vmImage: 'Ubuntu-22.04'
   strategy:
     matrix:
-      Capability Windows 11 - Chrome:
+      Capability Windows 11 - Edge:
         platform: 'windows'
-        browser: 'chrome'
-      Capability Windows 10 - Edge:
-        platform: 'win10'
         browser: 'edge'
+      Capability Windows  - Chrome:
+        platform: 'win8'
+        browser: 'chrome'
       Capability Mac - Safari:
         platform: 'mac'
         browser: 'safari'
@@ -27,6 +27,10 @@ jobs:
     inputs:
       versionSpec: '3.12'
       architecture: 'x64'
+
+  - task: BrowserStackConfig@0
+    inputs:
+      BrowserStackServiceEndPoint: 'browserstack-connection'
 
   - script: python -m pip install --upgrade pip && pip --version
     displayName: 'Install/upgrade pip'
