@@ -1,0 +1,7 @@
+platformName: mac
+browserName: safari
+browserVersion: latest
+buildIdentifier: ${BUILD_NUMBER}
+projectName: Testing using Mac - Safari
+debug: true
+networkLogs: true
