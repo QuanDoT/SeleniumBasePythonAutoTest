@@ -32,8 +32,12 @@ jobs:
   - script: pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: pytest --browser=$(browser) --alluredir=allure_results --ad-block --demo --demo-sleep=0
+  - script: pytest tests/test_profile.py --browser=remote --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80 --cap_file=capabilities.yml --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run pytest using browser: $(browser)'
+
+  - task: BrowserStackResults@1
+    inputs:
+      browserstackProduct: 'automate'
 
   - task: PublishAllureReport@1
     displayName: 'Publish Allure Report: $(browser)'
