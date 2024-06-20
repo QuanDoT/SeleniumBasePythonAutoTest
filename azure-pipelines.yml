@@ -11,14 +11,14 @@ jobs:
     vmImage: 'Ubuntu-22.04'
   strategy:
     matrix:
-      With Capability Windows 11 - Chrome:
-        platform: 'WINDOWS'
+      Capability Windows 11 - Chrome:
+        platform: 'windows'
         browser: 'chrome'
-      With Capability Windows 10 - Edge:
-        platform: 'WIN10'
+      Capability Windows 10 - Edge:
+        platform: 'win10'
         browser: 'edge'
-      With Capability Mac - Safari:
-        platform: 'MAC'
+      Capability Mac - Safari:
+        platform: 'mac'
         browser: 'safari'
     maxParallel: 5
 
@@ -37,7 +37,7 @@ jobs:
   - script: pip install allure-pytest
     displayName: 'Install Allure Report'
 
-  - script: pytest --browser=remote --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80 --cap_file=capabilities/capabiliy_$(platform)_$(browser).yml --alluredir=allure_results --ad-block --demo --demo-sleep=0
+  - script: pytest --browser=remote --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80 --cap_file=capabilities/$(platform)_$(browser).yml --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run test on platform: $(platform) and browser: $(browser)'
 
   - task: BrowserStackResults@1
