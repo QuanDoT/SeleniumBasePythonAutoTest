@@ -10,14 +10,22 @@ jobs:
   pool:
     vmImage: 'Ubuntu-22.04'
   strategy:
-    matrix:
-      Browser Chrome:
-        browser: 'chrome'
-      Browser Edge:
-        browser: 'edge'
+    # matrix:
+    #   Browser Chrome:
+    #     browser: 'chrome'
+    #   Browser Edge:
+    #     browser: 'edge'
     maxParallel: 5
 
   steps:
+  - task: BrowserStackConfig@0
+    inputs:
+      BrowserStackServiceEndPoint: 'browserstack-connection'
+      
+  - task: BrowserStackResults@1
+    inputs:
+      browserstackProduct: 'automate'
+      
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.12'
@@ -33,16 +41,12 @@ jobs:
     displayName: 'Install Allure Report'
 
   - script: pytest tests/test_profile.py --browser=remote --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80 --cap_file=capabilities.yml --alluredir=allure_results --ad-block --demo --demo-sleep=0
-    displayName: 'Run pytest using browser: $(browser)'
-
-  - task: BrowserStackResults@1
-    inputs:
-      browserstackProduct: 'automate'
-
+    displayName: 'Run pytest'
+      
   - task: PublishAllureReport@1
-    displayName: 'Publish Allure Report: $(browser)'
+    displayName: 'Publish Allure Report'
     inputs:
-      reportName: 'Allure Report: $(browser)'
+      reportName: 'Allure Report'
       allureVersion: 2.29.0
       testResultsDir: allure_results
     condition: succeededOrFailed()
