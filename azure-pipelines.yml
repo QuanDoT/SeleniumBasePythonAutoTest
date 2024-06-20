@@ -5,7 +5,6 @@ trigger:
 - master
 
 jobs:
-
 - job: 'Test'
   pool:
     vmImage: 'Ubuntu-22.04'
@@ -21,10 +20,6 @@ jobs:
   - task: BrowserStackConfig@0
     inputs:
       BrowserStackServiceEndPoint: 'browserstack-connection'
-      
-  - task: BrowserStackResults@1
-    inputs:
-      browserstackProduct: 'automate'
       
   - task: UsePythonVersion@0
     inputs:
@@ -42,7 +37,11 @@ jobs:
 
   - script: pytest tests/test_profile.py --browser=remote --server=trungqun_NxHvTD:rGMre9ctExHXnkxxNHLT@hub.browserstack.com --port=80 --cap_file=capabilities.yml --alluredir=allure_results --ad-block --demo --demo-sleep=0
     displayName: 'Run pytest'
-      
+  
+  - task: BrowserStackResults@1
+    inputs:
+      browserstackProduct: 'automate'
+
   - task: PublishAllureReport@1
     displayName: 'Publish Allure Report'
     inputs:
